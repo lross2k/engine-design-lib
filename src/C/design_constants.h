@@ -1,0 +1,5 @@
+#ifndef CONSTANTS
+
+#define PRESION_ATMOSFERICA 101325   // E9
+
+#endif // CONSTANTS
