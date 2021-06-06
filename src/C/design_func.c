@@ -1,33 +1,32 @@
 #include "design_func.h"
-
 // Hoja de Excel: Diseño
 
-// Constantes
+// Variable declaration
+motor_t motor_activo = {
+	.presion = 800,	// psi
+	.escape_vel = 0
+};
+
+// Constants
+
 // E9 PRESION_ATMOSFERICA
+// E26 TEMPERATURA_CAMARA
+// E46 'Heat Capacity ratio' HEAT_CAPACITY_RATIO
+// E47 CONSTANTE_GASES
+// E54 PRESION_ATMOSFERICA
 
-// E25
-float E25 = 5515805.60;        // No implementada
+// Functions
 
-// E26
-float E26 = 1710.0;              // No implementada
-
-// E46
-float E46 = 1.043;             // No implementada
-
-// E47
-float E47 = 196.14;            // No implementada
-
-// E54
-// Equivale a PRESION_ATMOSFERICA
-
-// E62 'velocidad de escape'
-//(((2*E46)/(E46-1))*E47*E26*(1-(E54/E25)^((E46-1)/(E46))))^(0.5)                 // Excel
-//sqrt(2*E46/(E46-1)*E47*E26*(1-pow((PRESION_ATMOSFERICA/E25),((E46-1)/E46))))    // equivalente en C
-
-// Posible funcion para mayor modularidad
-float calc_escape_vel(float k, float R, float T1, float P2, float P1)
-{	
-	return sqrt(2*k/(k-1)*R*T1*(1-pow((P2/P1),((k-1)/k))));	
+// E25 get_presion_pa(motor_t *motor)
+// E49 Volumen especifico camara
+float volumen_camara()
+{
+	return TEMPERATURA_CAMARA*CONSTANTE_GASES/get_presion_pa(&motor_activo);
 }
-
-float E62 = 1572.242432; // Valor obtenido de calc_escape_vel
+// E62 Velocidad de escape
+float calc_escape_vel()
+{	
+	float k = HEAT_CAPACITY_RATIO;
+	return sqrt(2*k/(k-1)*CONSTANTE_GASES*TEMPERATURA_CAMARA*
+	(1-pow((PRESION_ATMOSFERICA/get_presion_pa(&motor_activo)),((k-1)/k))));
+}
