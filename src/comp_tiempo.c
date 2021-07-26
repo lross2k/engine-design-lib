@@ -1,5 +1,5 @@
 //Proms_Comportamiento_Tiempo//
-#include "Rendimientos.h"
+#include "rendimientos.h"
 
 //Lista definida desde AB32:AB1149
 float empuje_prom_tiempo(float list[])
