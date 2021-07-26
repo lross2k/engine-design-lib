@@ -22,4 +22,3 @@ float APPLIB_EXPORT aplastamiento();
 float APPLIB_EXPORT margen_de_seguridad_aplaztamiento();
 
 #endif //DESIGN_FUNC_H
-

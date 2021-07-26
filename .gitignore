@@ -1,3 +1,18 @@
+# Visual Studio stuff
 .vs/
 out/
+# Recommended build directory
 build/
+# Binary files leftover 
+*.exe
+*.so
+*.lib
+*.o
+*.out
+*.dll
+*.a
+# Compressed files for whatever reason
+*.zip
+*.7z
+# Python interpreter leftovers
+__pycache__/

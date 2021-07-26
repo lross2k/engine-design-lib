@@ -6,6 +6,8 @@
 #include "comp_area.h"
 #include "comp_tiempo.h"
 
+// TODO: cambiar list[] por nombres mas descriptivos
+
 //Constructores
 float volumen_combustible();
 float masa_combustible();
@@ -23,4 +25,4 @@ float I_tot_esp(float list[]);
 float Delta_V_Esp(float list[]);
 
 
-#endif RENDIMIENTOS
+#endif // RENDIMIENTOS

@@ -25,6 +25,11 @@ tubing_t* tubing_init(
     tube->shear_stress_pressure = shear_pressure;
     tube->ult_stress_tension = ult_tension;
     tube->ult_stress_pressure = ult_pressure;
+    tube->mean_tubing_diameter = 0.0f;
+    tube->transversal_area = 0.0f;
+    tube->internal_radius = (tube->diameter_ext-(2*tube->wall_thickness))/2; // temp_E15
+    tube->sector_angle = 0.0f;    // degrees
+    tube->material_area = 0.0f;
     return(tube);
 }
 
@@ -46,6 +51,13 @@ engine_t* engine_init(
         printf("malloc failed\n");
         exit(1);
     }
+    engine->width_condition = 0.0f;
+    engine->margin_of_safety = 0.0f;
+    engine->max_stress = 0.0f;
+    engine->radial_stress = 0.0f;
+    engine->tangencial_stress = 0.0f;
+    engine->longitudinal_stress = 0.0f;
+    engine->max_pressure = 0.0f;
     engine->pressure = pressure;
     engine->temperature = temperature;
     engine->n_grains = n_grains;
@@ -55,9 +67,11 @@ engine_t* engine_init(
     engine->separation = separation;
     engine->used_tube = used_tube;
     engine->used_screws = used_screws;
-    engine->escape_vel = 0;
+    engine->escape_vel = 0.0f;
 	return(engine);
 }
+
+// TODO: screws init funtion
 
 // 'Diseño'!E25 Retorna presion actual del motor en pascales
 float get_pressure_pa(engine_t *self)

@@ -6,4 +6,4 @@ float prom_A_Trans();
 float prom_A_Long();
 float prom_A_Quemado();
 
-#endif COMP_AREA
+#endif // COMP_AREA

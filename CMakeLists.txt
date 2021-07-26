@@ -26,7 +26,13 @@ IF (BUILD_SHARED_LIBS)
 ENDIF (BUILD_SHARED_LIBS)
 
 # Create a target for the library
-ADD_LIBRARY (applib ${LIB_TYPE} "src/design_func.c" "src/engine.c" "src/rendimientos.c" "src/comp_area.c" "src/comp_tiempo.c")
+ADD_LIBRARY (applib ${LIB_TYPE} "src/design_func.c" 
+								"src/engine.c" 
+								"src/rendimientos.c" 
+								"src/comp_area.c" 
+								"src/comp_tiempo.c"
+								"src/design_resist.c"
+			)
 
 # Specify the directory to contain header files
 INCLUDE_DIRECTORIES ("include")

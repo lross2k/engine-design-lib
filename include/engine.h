@@ -7,22 +7,27 @@
 #include "DLLDefines.h"
 #include "design_func.h"
 
+// TODO: free library structs function
+
 // Estructura para tuberia
 typedef struct tubing
 {
    char *material;
-   float diameter_ext, wall_thickness;
-   float young_module;
+   float diameter_ext, wall_thickness, internal_radius;
+   float young_module, sector_angle, mean_tubing_diameter;
    float shear_stress_tension, shear_stress_pressure;
    float ult_stress_tension, ult_stress_pressure;
+   float transversal_area, material_area;
 } APPLIB_EXPORT tubing_t;
 
 // Estructura para tornillos
 typedef struct screws
 {
-	float diameter;
+	float diameter, dist_center_wall;
 	unsigned int n_screws;
+    float area_per_screw, screw_occupied_area;
 	char  *material;
+    float width_cutting_segment;
 } APPLIB_EXPORT screws_t;
 
 // Estructura del engine
@@ -30,6 +35,7 @@ typedef struct engine
 {
 	float pressure;         // chamber pressure in psi
 	float escape_vel, temperature;
+    float width_condition, margin_of_safety, max_stress, radial_stress, tangencial_stress, longitudinal_stress, max_pressure;
     // grains data
     int n_grains;
     float internal_radius, external_radius, longitude, separation;

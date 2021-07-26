@@ -7,4 +7,4 @@ float impulso_tot(float list[]);
 float impulso_esp(float list[]);
 float delta_V(float list[]);
 
-#endif COMP_TIEMPO
+#endif // COMP_TIEMPO
