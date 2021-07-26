@@ -4,6 +4,9 @@
 //Constantes matemáticas
 #define PI 3.141592f					// PI
 
+//Recamara 
+#define press_Pa (800*6894.757)			//E25 float input
+
 //Constantes Físicas
 #define g_terr 9.81						// g
 
@@ -26,6 +29,7 @@
 #define fact_conv_m_to_i 0.0254f		//factor de conversion de metros a pulgadas
 
 //Comportamiento en el tiempo//
+// TODO: revisar esto
 #define I_T
 #define I_sp
 
