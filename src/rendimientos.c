@@ -59,7 +59,7 @@ float emp_prom(float list[])
 float emp_max(float list[])
 {
     float max = 0;
-    for (int n = 0; n < sizeof(*list); n++)
+    for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         if (list[n] > max)
         {

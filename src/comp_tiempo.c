@@ -6,7 +6,7 @@ float empuje_prom_tiempo(float list[])
 {
     float prom_final = 0;
     int cont = 0;
-    for (int n = 0; n < sizeof(*list); n++)
+    for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         if (list[n] > 0)
         {
@@ -15,13 +15,14 @@ float empuje_prom_tiempo(float list[])
         }
     }
     prom_final = prom_final / cont;
+    return prom_final;
 }
 
 //E25
 float impulso_tot(float list[])
 {
     int IT = 0;
-    for (int n = 0; n < sizeof(*list); n++)
+    for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         IT = IT + list[n];
     }
@@ -38,7 +39,7 @@ float impulso_esp(float list[])
 float delta_V(float list[])
 {
     int DeltaV = 0;
-    for (int n = 0; n < sizeof(*list); n++)
+    for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         DeltaV = DeltaV + list[n];
     }
