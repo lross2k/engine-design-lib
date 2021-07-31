@@ -1,8 +1,10 @@
 #ifndef VAL_TERMOD_FUNC_H
 #define VAL_TERMOD_FUNC_H 
+
+#include <math.h>
 #include "design_constants.h"
 
-// Constructores
+// Prototipos de funciones
 float vol_esp_cam_combustion();
 float vol_esp_garganta();
 float vol_esp_escape();
@@ -16,7 +18,7 @@ float vel_numero_mach_mt();
 float velocidad_escape();
 float vel_sonica_local_a2();
 float vel_numero_mach_m2();
-
 float vel_escape_caract();
 
-#endif 
+#endif // VAL_TERMOD_FUNC_H
+

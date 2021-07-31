@@ -33,7 +33,7 @@ float presion_garganta()
 // Temperaturas
 
 // E56 temperatura de garganta
-float presion_garganta()
+float temp_garganta()
 {
     return TEMPERATURA_CAMARA * pow((vol_esp_cam_combustion() / vol_esp_garganta()),(HEAT_CAPACITY_RATIO - 1));
 }

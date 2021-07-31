@@ -32,6 +32,7 @@ ADD_LIBRARY (applib ${LIB_TYPE} "src/design_func.c"
 								"src/comp_area.c" 
 								"src/comp_tiempo.c"
 								"src/design_resist.c"
+								"src/val_termod.c"
 			)
 
 # Specify the directory to contain header files
