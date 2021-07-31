@@ -46,10 +46,10 @@ ENDIF (NOT MSVC)
 IF (MSVC)
     # warning level 4 and all warnings as errors
     TARGET_COMPILE_OPTIONS(applib PRIVATE /W4 /WX)
-ELSE()
+ELSE(MSVC)
     # most warnings all treated as errors
     TARGET_COMPILE_OPTIONS(applib PRIVATE -Wall -Wextra -pedantic -Werror)
-ENDIF()
+ENDIF(MSVC)
 
 # Specify arguments to be used in the export header
 GENERATE_EXPORT_HEADER (applib

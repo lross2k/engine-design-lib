@@ -2,6 +2,8 @@
 #define VAL_TERMOD_FUNC_H 
 
 #include <math.h>
+
+#include "DLLDefines.h"
 #include "design_constants.h"
 
 // Prototipos de funciones
@@ -9,8 +11,8 @@ float vol_esp_cam_combustion();
 float vol_esp_garganta();
 float vol_esp_escape();
 float presion_garganta();
-float presion_escape();
-float temper_garganta();
+float presion_escape();	// TODO
+float APPLIB_EXPORT tsel_temper_garganta();
 float temper_escape();
 float velocidad_garganta();
 float vel_sonica_local_at();

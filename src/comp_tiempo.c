@@ -21,7 +21,7 @@ float empuje_prom_tiempo(float list[])
 //E25
 float impulso_tot(float list[])
 {
-    int IT = 0;
+    float IT = 0;
     for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         IT = IT + list[n];
@@ -32,13 +32,13 @@ float impulso_tot(float list[])
 //E26
 float impulso_esp(float list[])
 {
-    return impulso_tot(list) / (masa_combustible() * 9.81);
+    return impulso_tot(list) / (masa_combustible() * 9.81f);
 }
 
 //AD3511
 float delta_V(float list[])
 {
-    int DeltaV = 0;
+    float DeltaV = 0;
     for (long unsigned int n = 0; n < sizeof(*list); n++)
     {
         DeltaV = DeltaV + list[n];

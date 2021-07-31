@@ -23,6 +23,8 @@ make
 ### WIth MSVC in Visual Studio
 Open the directory in VS, let CMake generate the project, then select on *Build project* at the top of VS and then the final build will be created, currently only Debug x64 exists
 
+*CMake adds `/W3` by deffault so some warning for overriding with `/W4` will appear, currently looking for a solution*
+
 ### With MSVC for other IDEs/Text editors with Visual Studio avaliable
 Guessing you have a `build/`, run cmake from there with `cmake ..`
 
@@ -33,13 +35,14 @@ In case you want to stay away from CMake, this should work for all Unix like sys
 
 ### Compiling the shared object from a subdirectory build
 ```
-mkdir build && cd build
+mkdir build
+cd build
 gcc -c -Wall -Wextra -pedantic -Werror -fpic ../src/*.c -I../include/
 gcc -shared -o libapplib.so ./*.o
+rm *.o
 ```
 ### Building main.c and linking to the lib from the build subdirectory
 ```
 gcc -o app ../main.c -Wall -Wextra -pedantic -Werror -I../include/ -L. -lapplib -lm
 export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
 ```
-

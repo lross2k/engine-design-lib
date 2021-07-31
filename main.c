@@ -1,18 +1,21 @@
+#include <stdio.h>
 #include <string.h>
-
 // Header for all the library functions
-#include "TSEL.h"
+#include <TSEL.h>
 
-// Debugging example to test functions and print them out
-void debug()
+// Example of how to use the library functions
+void print_debug_example()
 {
+	// Se inicializan los tornillos
     printf("Inicializando structs\n");
-    screws_t created_screw = {
-        .diameter = 0.007466f,
-        .n_screws = 6,
-        .material = "Acero"
-    };
-    tubing_t* created_tube = tubing_init(
+	screws_t* created_screw = tsel_screws_init(
+		"Acero",
+		6,
+		0.007466f,
+		0.01f
+	);
+	// Se inicializa la tuberia
+    tubing_t* created_tube = tsel_tubing_init(
         "Aluminio 6061-T6",
         0.073f,
         0.0052f,
@@ -22,7 +25,8 @@ void debug()
         310000000,
         205000000
     );
-	engine_t* testing_engine = engine_init(
+	// Se inicializa el motor usando los tornillos y tuberia creados
+	engine_t* testing_engine = tsel_engine_init(
         800,
         1710,
         4,
@@ -31,12 +35,23 @@ void debug()
         0.1f,
         0.001f,
         created_tube,
-        &created_screw
+        created_screw
     );
-	printf("La presion del motor debug es %f psi\n",get_pressure(testing_engine));
-	printf("La velocidad de escape es %f antes de ser calculada\n", get_escape_vel(testing_engine));
-	set_escape_vel(testing_engine);
-	printf("La velocidad de escape es %f luego de usar la funcion calc_escape_vel()\n", get_escape_vel(testing_engine));
+
+	// Acceder a memoria inicializada
+	printf("La presion del motor dada es %f psi\n",tsel_get_pressure(testing_engine));
+	printf("\nLa velocidad de escape automaticamente inicializada es %f\n", tsel_get_escape_vel(testing_engine));
+
+	// Modificar valores de memoria con funciones
+	tsel_set_escape_vel(testing_engine, 666.420f);
+	printf("\nLa velocidad de escape modificada con tsel_set_escape_vel() es %f\n", tsel_get_escape_vel(testing_engine));
+
+	// Usando una funcion de rendimientos.c
+	printf("\nEl valor de combuistion es %f\n", br_combustion());
+
+	// Usando una funcion de val_termod.c
+	printf("\nLa temperatura en garganta es de %f\n", tsel_temper_garganta());
+
 }
 
 // Para hacer pruebas de la lib se tiene la aplicacion de CLI basica
@@ -44,13 +59,17 @@ int main(int argc, char *argv[])
 {
 	printf("* * * * * * * * * * * * * * * * * * * * * * * *\n");
 	printf("*            TECSpace Engine Lib              *\n");
-	printf("*            v 0.0.1d                         *\n");
+	printf("*            v 0.0.2d                         *\n");
 	//printf("*                                             *\n");
 	printf("* * * * * * * * * * * * * * * * * * * * * * * *\n\n");
 	if (argc <= 1)
 	{
-		printf("Usage: -f <enginefile> [options]\n");
-		printf("Check help with: --help or -h\n");
+		printf(	"Usage: -f <enginefile> [options]\n"
+				"Check help with : --help or -h\n");
+
+		printf("\n* * *\nShowing debug example, gonna remove this for final CLI build\n* * *\n\n");
+
+		print_debug_example();
 	}
 	else
 	{
@@ -62,7 +81,7 @@ int main(int argc, char *argv[])
 					//-f toma el siguiente argumento
 					if (strncmp(argv[i+1],"debug",6) == 0) {
 						printf("\'-f debug\' showing the debugging example\n");
-						debug();
+						print_debug_example();
 					}
 					else {
 						printf("%s is not a valid file for -f\nRead --help\n", argv[i+1]);

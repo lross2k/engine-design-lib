@@ -24,7 +24,7 @@ typedef struct tubing
 typedef struct screws
 {
 	float diameter, dist_center_wall;
-	unsigned int n_screws;
+	unsigned int amount;
     float area_per_screw, screw_occupied_area;
 	char  *material;
     float width_cutting_segment;
@@ -44,18 +44,7 @@ typedef struct engine
 } APPLIB_EXPORT engine_t;
 
 // Function prototypes
-engine_t APPLIB_EXPORT *engine_init(
-    float pressure,
-    float temperature,
-    int n_grains,
-    float internal_radius,
-    float external_radius,
-    float longitude,
-    float separation,
-    tubing_t *used_tube,
-    screws_t *used_screws
-);
-tubing_t APPLIB_EXPORT *tubing_init(
+tubing_t APPLIB_EXPORT *tsel_tubing_init(
     char *material,
     float diameter,
     float thickness,
@@ -65,10 +54,27 @@ tubing_t APPLIB_EXPORT *tubing_init(
     float ult_tension,
     float ult_pressure
 );
-float APPLIB_EXPORT get_pressure_pa(engine_t *self);
-void APPLIB_EXPORT set_pressure(engine_t *self, float pressure);
-void APPLIB_EXPORT set_escape_vel(engine_t *self);
-float APPLIB_EXPORT get_escape_vel(engine_t *self);
-float APPLIB_EXPORT get_pressure(engine_t *self);
+screws_t APPLIB_EXPORT* tsel_screws_init(
+    char* material,
+    unsigned int amount,
+    float diameter,
+    float dist_center_wall
+);
+engine_t APPLIB_EXPORT* tsel_engine_init(
+    float pressure,
+    float temperature,
+    int n_grains,
+    float internal_radius,
+    float external_radius,
+    float longitude,
+    float separation,
+    tubing_t* used_tube,
+    screws_t* used_screws
+);
+float APPLIB_EXPORT tsel_psi_to_pa(float psi);
+void APPLIB_EXPORT tsel_set_pressure(engine_t *engine, float pressure);
+void APPLIB_EXPORT tsel_set_escape_vel(engine_t *engine, float vel);
+float APPLIB_EXPORT tsel_get_escape_vel(engine_t *engine);
+float APPLIB_EXPORT tsel_get_pressure(engine_t *engine);
 
 #endif // ENGINE_H

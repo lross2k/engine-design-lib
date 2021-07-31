@@ -11,6 +11,10 @@
 
 /*Functions*/
 // E25 get_pressure_pa(engine_t *engine)
+float get_pressure_pa(engine_t* engine)
+{
+	return(tsel_psi_to_pa(engine->pressure));
+}
 // E49 Volumen especifico camara
 float volumen_camara(engine_t *engine)
 {
@@ -19,16 +23,16 @@ float volumen_camara(engine_t *engine)
 // E62 Velocidad de escape
 float calc_escape_vel(engine_t* engine)
 {	
-	float k = HEAT_CAPACITY_RATIO;
-	return(sqrt(2.0f*k/(k-1.0f)*CONSTANTE_GASES*TEMPERATURA_CAMARA*(1.0f-pow((PRESION_ATMOSFERICA/get_pressure_pa(engine)),((k-1.0f)/k)))));
-	//pow es para double, analizar posible cambio de type en todo
+	float calc_pow = powf((PRESION_ATMOSFERICA / get_pressure_pa(engine)), ((HEAT_CAPACITY_RATIO - 1.0f) / HEAT_CAPACITY_RATIO));
+	return(sqrtf(2.0f * HEAT_CAPACITY_RATIO /(HEAT_CAPACITY_RATIO -1.0f) * CONSTANTE_GASES * TEMPERATURA_CAMARA * (1.0f - calc_pow)));
+	//powf es para double, analizar posible cambio de type en todo
 }
 /* Determinacion de fuerza sobre tapas*/
 // E140 Area interna
 float temp_E15 = 1;	// Dependencia E15
 float area_interna()
 {
-	return(PI*pow(temp_E15,2));	//pow es para double, analizar posible cambio de type en todo
+	return(PI*powf(temp_E15,2));	//powf es para double, analizar posible cambio de type en todo
 }
 // E141 Fuerza maxima
 float temp_E118 = 1;	// Dependencia E118

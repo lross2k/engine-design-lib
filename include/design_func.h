@@ -4,6 +4,8 @@
 #include <math.h>
 
 #include "design_constants.h"
+#include "rendimientos.h"
+#include "val_termod.h"
 #include "engine.h"
 #include "DLLDefines.h"
 

@@ -5,10 +5,10 @@
 #define PI 3.141592f					// PI
 
 //Recamara 
-#define press_Pa (800*6894.757)			//E25 float input
+#define press_Pa (800.0f*6894.757f)			//E25 float input
 
 //Constantes Físicas
-#define g_terr 9.81						// g
+#define g_terr 9.81f					// g
 
 #define PRESION_ATMOSFERICA 101325.0f   // E9
 #define HEAT_CAPACITY_RATIO 1.043f		// E46

@@ -4,7 +4,7 @@
 //E43
 float br_combustion()
 {
-    return (float)(const_a_br * pow(press_Pa * fact_conv_br, const_n_br) * fact_conv_m_to_i);
+    return (const_a_br * powf(press_Pa * fact_conv_br, const_n_br) * fact_conv_m_to_i);
 }
 
 //Combustible//
@@ -12,7 +12,7 @@ float br_combustion()
 //E67 Volumen_Combustible
 float volumen_combustible()
 {
-    return (float)(PI*Lg*cant_granos*(pow(re, 2)-pow(ri, 2)));
+    return (float)(PI*Lg*cant_granos*(powf(re, 2)-powf(ri, 2)));
 }
 
 //E68 Masa_Combustible
